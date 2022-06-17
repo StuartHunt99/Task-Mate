@@ -8,15 +8,36 @@ namespace TaskMate
 	public class Task
 	{
 		public string Name { get; set; }
-		public int Blocks { get; set; }
+		public string Blocks { get; set; }
 		public string Type { get; set; }
 
-     public void PrintTasks()
+    public void PrintTasks()
         {
-			Console.WriteLine($"Name: {Name}, Blocks {Blocks}, Type{Type}");
+			Console.WriteLine($"Name: {Name}, Blocks: {Blocks}, Type: {Type}");
 
 		}
 
+    public Task AddTask()
+        {
+
+             
+	        Console.Clear();
+            Console.WriteLine("Task Name?");
+            String name = Console.ReadLine();
+            Console.WriteLine("Task Time Blocks?");
+            String blocks = Console.ReadLine();
+            Console.WriteLine("Task Type?");
+            String type = Console.ReadLine();
+
+            var task = new Task()
+            {
+                Name = name,
+                Blocks = blocks,
+                Type = type
+            };
+
+            return task;
+        }
         //static List<Task> InitTaskList()
         //   {
 

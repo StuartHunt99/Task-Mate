@@ -11,18 +11,28 @@ namespace TaskMate
         {
 
             //var tasksReturn = ReadTaskList();
-            var tasksReturn = ReadThis();
+            var taskList = JSONLoad();
 
-            //DISPLAY ALL THE TASKS IN THE LIST
-	        foreach (var task in tasksReturn) Console.WriteLine(task.Name);
+            var tempTask = (taskList[1].AddTask());
+            Console.WriteLine(tempTask.Name);
+            taskList.Add(tempTask);
+		
+
+            //foreach (var task in taskList) Console.WriteLine(task.Name);
+            foreach (var task in taskList) task.PrintTasks();
+
+
+            //taskList[1].PrintTasks();
 
             //TEST THE ABILITY TO CALL PROPETIES FROM ONE PARTICULAR LIST ITEM
-            Console.WriteLine(tasksReturn[0].Name);
+            //Console.WriteLine(taskList[0].Name);
 
-            string jsonString = JsonSerializer.Serialize(tasksReturn);
+            //string jsonString = JsonSerializer.Serialize(taskList);
             //File.WriteAllText("TaskLists.json", jsonString);
 
-            static List<Task> ReadThis()
+
+
+            static List<Task> JSONLoad()
             {
                 string fileName = "TaskLists.json";
                 string jsonStringRead = File.ReadAllText(fileName);
@@ -30,6 +40,8 @@ namespace TaskMate
                 return tasksReturn;
             }
 
+            
+            
             //BUILT AN INTIAL LIST OF TASKS
             //static List<Task> InitTaskList()
             //{
