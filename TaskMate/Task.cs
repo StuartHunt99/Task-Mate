@@ -11,11 +11,7 @@ namespace TaskMate
 		public string Blocks { get; set; }
 		public string Type { get; set; }
 
-    public void PrintTasks()
-        {
-			Console.WriteLine($"Name: {Name}, Blocks: {Blocks}, Type: {Type}");
-
-		}
+   
 
     public Task AddTask()
         {
