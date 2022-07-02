@@ -10,9 +10,7 @@ namespace TaskMate
         static void Main(string[] args)
         {
           
-            var taskList = JSONLoad();
-
-
+            var taskList = Repo.Load();
             UserInterface.MenuDisp(taskList);
 
 
@@ -28,14 +26,6 @@ namespace TaskMate
 
 
 
-
-            static List<Task> JSONLoad()
-            {
-                string fileName = "TaskLists.json";
-                string jsonStringRead = File.ReadAllText(fileName);
-                List<Task> tasksReturn = JsonSerializer.Deserialize<List<Task>>(jsonStringRead)!;
-                return tasksReturn;
-            }
 
 
             
