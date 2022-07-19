@@ -7,10 +7,10 @@ namespace TaskMate
 	{
         public static void MenuDisp(List<Task> taskList)
         {
+            Task tempTask = new Task();
             string option =  "";
-            //while (option  != "4" ){
+            while (option  != "4"){
 
-                Console.Clear();
                 Console.WriteLine("Select an Option:");
                 Console.WriteLine("1: Add Task");
                 Console.WriteLine("2: Output Task List");
@@ -21,7 +21,7 @@ namespace TaskMate
                 if (option == "1")
                 {
                     Console.WriteLine("1 Selected");
-                    AddTask();
+                    taskList.Add(AddTask());
 
                 }
                 else if (option == "2")
@@ -36,37 +36,37 @@ namespace TaskMate
                 }
                 else if (option == "3")
                 {
-                    Console.WriteLine("3 Selected");
+                    Console.WriteLine("Saving!");
                 }
                 else
                 {
                     Console.WriteLine("Invalid Selection");
                 }
-                Console.ReadLine();
+                //Console.ReadLine();
 
-            //}
+            }
+            Console.WriteLine("End of While");
         }
 
         public static Task AddTask()
         {
             Console.Clear();
             Console.WriteLine("Task Name?");
-            String name = Console.ReadLine();
+            String taskName = Console.ReadLine();
             Console.WriteLine("Task Time Blocks?");
-            String blocks = Console.ReadLine();
+            String taskBlocks = Console.ReadLine();
             Console.WriteLine("Task Type?");
-            String type = Console.ReadLine();
+            String taskType = Console.ReadLine();
 
             var task = new Task()
             {
-                Name = name,
-                Blocks = blocks,
-                Type = type
+                Name = taskName,
+                Blocks = taskBlocks,
+                Type = taskType
             };
 
-           
 
-           return task;
+          return task;
         }
 
     }

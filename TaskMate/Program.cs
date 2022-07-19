@@ -16,14 +16,13 @@ namespace TaskMate
 
             return;
 
-            var tempTask = (taskList[1].AddTask());
-            Console.WriteLine(tempTask.Name);
-            taskList.Add(tempTask);
+            //Task tempTask = (taskList[1].AddTask());
+            //Console.WriteLine(tempTask.Name);
+            //taskList.Add(tempTask);
 		
 	   
 
             
-
 
 
 
