@@ -21,7 +21,7 @@ namespace TaskMate
                 if (option == "1")
                 {
                     Console.WriteLine("1 Selected");
-                    taskList.Add(AddTask());
+                    taskList.Add(Task.AddTask());
 
                 }
                 else if (option == "2")
@@ -38,6 +38,10 @@ namespace TaskMate
                 {
                     Console.WriteLine("Saving!");
                 }
+                else if (option == "4")
+                {
+                    Console.WriteLine("Goodbye");
+                        }
                 else
                 {
                     Console.WriteLine("Invalid Selection");
@@ -45,29 +49,29 @@ namespace TaskMate
                 //Console.ReadLine();
 
             }
-            Console.WriteLine("End of While");
+            //Console.WriteLine("End of While");
         }
 
-        public static Task AddTask()
-        {
-            Console.Clear();
-            Console.WriteLine("Task Name?");
-            String taskName = Console.ReadLine();
-            Console.WriteLine("Task Time Blocks?");
-            String taskBlocks = Console.ReadLine();
-            Console.WriteLine("Task Type?");
-            String taskType = Console.ReadLine();
+        //public static Task AddTask()
+        //{
+        //    Console.Clear();
+        //    Console.WriteLine("Task Name?");
+        //    String taskName = Console.ReadLine();
+        //    Console.WriteLine("Task Time Blocks?");
+        //    String taskBlocks = Console.ReadLine();
+        //    Console.WriteLine("Task Type?");
+        //    String taskType = Console.ReadLine();
 
-            var task = new Task()
-            {
-                Name = taskName,
-                Blocks = taskBlocks,
-                Type = taskType
-            };
+        //    var task = new Task()
+        //    {
+        //        Name = taskName,
+        //        Blocks = taskBlocks,
+        //        Type = taskType
+        //    };
 
 
-          return task;
-        }
+        //  return task;
+        //}
 
     }
 }

@@ -13,7 +13,7 @@ namespace TaskMate
 
    
 
-    public Task AddTask()
+    public static Task AddTask()
         {
 
              
@@ -68,7 +68,10 @@ namespace TaskMate
         //       });
 
         //       return tasks;
-        //}    
+        //}
+
+
+
     }
 
 
