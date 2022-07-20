@@ -46,32 +46,11 @@ namespace TaskMate
                 {
                     Console.WriteLine("Invalid Selection");
                 }
-                //Console.ReadLine();
 
             }
-            //Console.WriteLine("End of While");
         }
 
-        //public static Task AddTask()
-        //{
-        //    Console.Clear();
-        //    Console.WriteLine("Task Name?");
-        //    String taskName = Console.ReadLine();
-        //    Console.WriteLine("Task Time Blocks?");
-        //    String taskBlocks = Console.ReadLine();
-        //    Console.WriteLine("Task Type?");
-        //    String taskType = Console.ReadLine();
-
-        //    var task = new Task()
-        //    {
-        //        Name = taskName,
-        //        Blocks = taskBlocks,
-        //        Type = taskType
-        //    };
-
-
-        //  return task;
-        //}
+        
 
     }
 }

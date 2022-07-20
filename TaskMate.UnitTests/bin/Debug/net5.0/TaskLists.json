@@ -1,0 +1,8 @@
+[
+    {"Name":"INIT_Name","Blocks":"INIT_Blocks","Type":"INIT_Type"},
+    {"Name":"email","Blocks":"2","Type":"ToDo"},
+    {"Name":"call","Blocks":"2","Type":"ToDo"},
+    {"Name":"work","Blocks":"1","Type":"ToDo"},
+    {"Name":"cook","Blocks":"1","Type":"ToDo"},
+    {"Name":"play!!!","Blocks":"0","Type":null}
+]

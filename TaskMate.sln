@@ -5,6 +5,8 @@ VisualStudioVersion = 25.0.1703.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskMate", "TaskMate\TaskMate.csproj", "{C77339E8-F51A-49BC-8CF8-1D5F035A496E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskMate.UnitTests", "TaskMate.UnitTests\TaskMate.UnitTests.csproj", "{26BD361A-C09C-4FF4-971C-9DF1779ED62A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{C77339E8-F51A-49BC-8CF8-1D5F035A496E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C77339E8-F51A-49BC-8CF8-1D5F035A496E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C77339E8-F51A-49BC-8CF8-1D5F035A496E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{26BD361A-C09C-4FF4-971C-9DF1779ED62A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26BD361A-C09C-4FF4-971C-9DF1779ED62A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26BD361A-C09C-4FF4-971C-9DF1779ED62A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26BD361A-C09C-4FF4-971C-9DF1779ED62A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
