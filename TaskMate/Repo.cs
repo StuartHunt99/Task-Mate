@@ -34,6 +34,15 @@ namespace TaskMate
             string jsonString = JsonSerializer.Serialize(currentList);
             File.WriteAllText("TaskLists.json", jsonString);
         }
+
+        public static void DeleteTask(int id)
+        {
+            var currentList = Repo.Load();
+            currentList.RemoveAt(id);
+            string jsonString = JsonSerializer.Serialize(currentList);
+            File.WriteAllText("TaskLists.json", jsonString);
+
+        }
     }
 }
 
