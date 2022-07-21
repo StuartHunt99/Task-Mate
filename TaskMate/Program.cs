@@ -10,47 +10,7 @@ namespace TaskMate
     { 
         static void Main(string[] args)
         {
-
-            List<Task> taskList = Repo.Load();
-
-            //TaskList taskList = new TaskList();
-
-            SpectreUI.UiDisp();
-           
-            
-
-            //TEMP DISABLE
-            //UserInterface.MenuDisp(taskList);
-
-
-            return;
-
-            //Task tempTask = (taskList[1].AddTask());
-            //Console.WriteLine(tempTask.Name);
-            //taskList.Add(tempTask);
-		
-	   
-
-            
-
-
-
-
-            
-
+            SpectreUI.UiDisp();          
         }
     }
 }
-
-
-//taskList[1].PrintTasks();
-
-//TEST THE ABILITY TO CALL PROPETIES FROM ONE PARTICULAR LIST ITEM
-//Console.WriteLine(taskList[0].Name);
-
-//string jsonString = JsonSerializer.Serialize(taskList);
-//File.WriteAllText("TaskLists.json", jsonString);
-
-//foreach (var task in taskList) Console.WriteLine(task.Name);
-
-//var tasksReturn = ReadTaskList();
