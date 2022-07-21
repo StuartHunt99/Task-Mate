@@ -10,7 +10,8 @@ namespace TaskMate
     { 
         static void Main(string[] args)
         {
-            SpectreUI.UiDisp();          
+            SpectreUI.UiDisp();
+            
         }
     }
 }

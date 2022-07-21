@@ -12,7 +12,18 @@ namespace TaskMate
 		public string Name { get; set; }
 		public string Blocks { get; set; }
 		public string Type { get; set; }
+
+        public static void EditTask(string name)
+        {
+            var currentList = Repo.Load();
+
+
+        }
     }
+
+	
+
+	
 
 }
 

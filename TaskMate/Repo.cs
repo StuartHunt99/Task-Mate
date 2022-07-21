@@ -27,6 +27,13 @@ namespace TaskMate
             File.WriteAllText("TaskLists.json", jsonString);
         }
 
+        public static void UpdateTask(Task task, int id)
+        {
+            var currentList = Repo.Load();
+            currentList[id] = task;
+            string jsonString = JsonSerializer.Serialize(currentList);
+            File.WriteAllText("TaskLists.json", jsonString);
+        }
     }
 }
 
