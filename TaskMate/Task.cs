@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
+using Spectre.Console;
+
 
 namespace TaskMate
 {
@@ -18,11 +20,11 @@ namespace TaskMate
 
              
 	        Console.Clear();
-            Console.WriteLine("Task Name?");
+            AnsiConsole.WriteLine("Task Name?");
             String name = Console.ReadLine();
-            Console.WriteLine("Task Time Blocks?");
+            AnsiConsole.WriteLine("Task Time Blocks?");
             String blocks = Console.ReadLine();
-            Console.WriteLine("Task Type?");
+            AnsiConsole.WriteLine("Task Type?");
             String type = Console.ReadLine();
 
             var task = new Task()

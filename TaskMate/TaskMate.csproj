@@ -11,4 +11,9 @@
   <ItemGroup>
     <PackageReference Include="Spectre.Console" Version="0.44.0" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\net5.0\TaskLists.json">
+      <Link>TaskLists.json</Link>
+    </None>
+  </ItemGroup>
 </Project>

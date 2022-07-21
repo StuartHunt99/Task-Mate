@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
+using Spectre.Console;
 
 namespace TaskMate
 {
@@ -9,9 +10,17 @@ namespace TaskMate
     { 
         static void Main(string[] args)
         {
-          
-            var taskList = Repo.Load();
-            UserInterface.MenuDisp(taskList);
+
+            List<Task> taskList = Repo.Load();
+
+            //TaskList taskList = new TaskList();
+
+            SpectreUI.UiDisp();
+           
+            
+
+            //TEMP DISABLE
+            //UserInterface.MenuDisp(taskList);
 
 
             return;
