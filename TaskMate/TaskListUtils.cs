@@ -8,7 +8,7 @@ namespace TaskMate
     public class TaskListUtils
     {
 
-        public static void EditTask(string selection)
+        public static void EditTask2(string selection)
         {
             var taskList = Repo.Load();
             int found = selection.IndexOf(".");
