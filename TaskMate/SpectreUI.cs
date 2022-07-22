@@ -73,7 +73,7 @@ namespace TaskMate
                     Console.WriteLine("Please enter a valid number.");
                     intFlag = false;
                 }
-                else if (!(importance > 1 && importance < 4))
+                else if (!(importance > 0 && importance < 5))
                 {
                     Console.WriteLine("Please enter a valid number.");
                     intFlag = false;
@@ -168,14 +168,55 @@ namespace TaskMate
             }
             else if (selection == task.Minutes.ToString())
             {
-                s = AnsiConsole.Ask<string>("Task [green]minutes[/]?");
-                task.Minutes = int.Parse(s);
-                Repo.UpdateTask(task, id);
+                
+                bool intFlag = false;
+                while (intFlag == false)
+                {
+                    
+                    //AnsiConsole.WriteLine("Minutes?");
+                    //String min = Console.ReadLine();
+                   string min = AnsiConsole.Ask<string>("Task [green]minutes[/]?");
+                    if (!int.TryParse(min, out int minutes))
+                    {
+                        AnsiConsole.MarkupLine("[red]Please enter a valid number.[/]");
+                    }
+
+                    else
+                    {
+                        intFlag = true;
+                        task.Minutes = minutes;
+                        Repo.UpdateTask(task, id);
+                    }
+                }
             }
             else if (selection == task.Importance.ToString())
             {
-                s = AnsiConsole.Ask<string>("Task [green]importance[/]?");
-                task.Importance = int.Parse(s);
+                //s = AnsiConsole.Ask<string>("Task [green]importance[/]?");
+                //task.Importance = int.Parse(s);
+
+                bool intFlag = false;
+                while (intFlag == false)
+                {
+                    AnsiConsole.WriteLine("Level of importance (1-4)?");
+                    String imp = Console.ReadLine();
+                    if (!int.TryParse(imp, out int importance))
+                    {
+                        AnsiConsole.MarkupLine("[red]Please enter a valid number.[/]");
+                        //Console.WriteLine("Please enter a valid number.");
+                        intFlag = false;
+                    }
+                    else if (!(importance > 0 && importance < 5))
+                    {
+                        AnsiConsole.MarkupLine("[red]Please enter a valid number.[/]");
+                        //Console.WriteLine("Please enter a valid number.");
+                        intFlag = false;
+                    }
+                    else
+                    {
+                        task.Importance = importance;
+                        intFlag = true;
+                    }
+                }
                 Repo.UpdateTask(task, id);
             }          
         }
@@ -198,13 +239,6 @@ namespace TaskMate
                     .AddChoices(new[] { "", "<- BACK" }));
             //.MoreChoicesText("[grey](Move up and down to reveal more tasks)[/]")
 
-            //var taskList = Repo.Load();
-            //int found = selection.IndexOf(".");
-            //int length = selection.Length;
-            //int id = int.Parse(selection.Remove(found, length - found));
-
-            //SelectEditProperty(id);
-            //var selectionListR = selectionList.Reverse;
             for (int i = selectionList.Count - 1; i >= 0; i--)
             {
                 int found = selectionList[i].IndexOf(".");
@@ -214,20 +248,7 @@ namespace TaskMate
                     int id = int.Parse(selectionList[i].Remove(found, length - found));
                     Repo.DeleteTask(id);
                 }
-
-
             }
-            //foreach (string item in selectionList)
-            //{
-            //    int found = item.IndexOf(".");
-            //    if (found != -1)
-            //        {
-            //        int length = item.Length;
-            //        int id = int.Parse(item.Remove(found, length - found));
-            //        Repo.DeleteTask(id);
-            //        }
-            //}
-
         }
     }
 }
