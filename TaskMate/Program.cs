@@ -10,7 +10,15 @@ namespace TaskMate
     { 
         static void Main(string[] args)
         {
-            SpectreUI.UiDisp();
+
+
+            //SpectreUI.TaskMenu();
+            // List<Task> schedule = Repo.Load(); 
+            //SpectreUI.DisplayTaskQuadrant(schedule);
+
+            //TaskListUtils.CreateSchedule();
+
+            SpectreUI.MainMenu();
             
         }
     }
