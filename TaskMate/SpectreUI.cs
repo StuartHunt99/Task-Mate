@@ -8,53 +8,51 @@ using static System.Collections.Specialized.BitVector32;
 namespace TaskMate
 {
     public class SpectreUI
-    {
-
+    {        
         public static void MainMenu()
         {
+            AnsiConsole.Clear();
+            var highlightStyle = new Style().Foreground(Color.Lime);
             var selection = AnsiConsole.Prompt(
                 new SelectionPrompt<string>()
-                    .Title("Please Make a Selection?")
+                    .Title("[yellow]Please Make a Selection[/]")
                     .PageSize(10)
+                    .HighlightStyle(highlightStyle)
                     .MoreChoicesText("[grey](Move up and down to reveal more fruits)[/]")
-                    .AddChoices(new[] { "Update & Display Schedule", "Display Quadrant", "Display Task List", "Edit Task List", "Quit", })
+                    .AddChoices(new[] { "Update & Display Schedule", "Display Quadrant", "Display Task List", "Add/Edit/Delete Tasks", "[blue]QUIT[/]" })
             );
 
             switch (selection)
             {
                 case "Update & Display Schedule":
-                    //List<Task> schedule = TaskListUtils.CreateBlockedSchedule();
-                    //List<DayPlanItem> dayPlan = TaskListUtils.CreateDayPlan(schedule);
                     DisplayDayPlan();
                     break;
                 case "Display Quadrant":
-                    var schedule2 = TaskListUtils.CreateBlockedSchedule();
-                    DisplayTaskQuadrant(schedule2);
+                    DisplayTaskQuadrant();
                     break;
                 case "Display Task List":
-                    SelectEditTask();
+                    DisplayTasksTable();
                     break;
-                case "Edit Task List":
-                    SelectDeleteTask();
+                case "Add/Edit/Delete Tasks":
+                    TaskMenu();
                     break;
-                case "Quit":
+                case "[blue]QUIT[/]":
                     return;
             }
-
+            
             MainMenu();
         }
 
-
-
-
         public static void TaskMenu()
         {
+            var highlightStyle = new Style().Foreground(Color.Lime);
             var selection = AnsiConsole.Prompt(
                 new SelectionPrompt<string>()
-                    .Title("Please Make a Selection?")
+                    .Title("[yellow]Please Make a Selection[/]")
                     .PageSize(10)
-                    .MoreChoicesText("[grey](Move up and down to reveal more fruits)[/]")
-                    .AddChoices(new[] { "Display Tasks", "New Task", "Edit Tasks", "Delete Tasks", "Quit",})
+                    .HighlightStyle(highlightStyle)
+                    //.MoreChoicesText("[grey](Move up and down to reveal more fruits)[/]")
+                    .AddChoices(new[] { "Display Tasks", "New Task", "Edit Tasks", "Delete Tasks", "[blue]<- RETURN TO MAIN MENU[/]"})
             );
 
             switch (selection)
@@ -71,7 +69,7 @@ namespace TaskMate
                 case "Delete Tasks":
                     SelectDeleteTask();
                     break;
-                case "Quit":
+                case "[blue]<- RETURN TO MAIN MENU[/]":
                     return;                 
             }
 
@@ -86,17 +84,17 @@ namespace TaskMate
             int importance = 0;
             int urgency = 0;
 
-            Console.Clear();
-            AnsiConsole.WriteLine("Task Name?");
+            AnsiConsole.Clear();
+            AnsiConsole.Markup("[yellow]Task Name?[/] ");
             String name = Console.ReadLine();
             
             while (intFlag == false)
             {
-                AnsiConsole.WriteLine("How many minutes will this take?");
+                AnsiConsole.Markup("[yellow]How many minutes will this take?[/] ");
                 String min = Console.ReadLine();
                 if (!int.TryParse(min, out minutes))
                 {
-                    Console.WriteLine("Please enter a valid number.");                    
+                    AnsiConsole.MarkupLine("[red]Please enter a valid number.[/] ");
                 }
                 else intFlag = true;
             }
@@ -106,16 +104,16 @@ namespace TaskMate
             intFlag = false;
             while (intFlag == false)
             {
-                AnsiConsole.WriteLine("Level of importance (1-4)?");
+                AnsiConsole.Markup("[yellow]Level of importance (1-4)? [/]");
                 String imp = Console.ReadLine();
                 if (!int.TryParse(imp, out importance))
                 {
-                    Console.WriteLine("Please enter a valid number.");
+                    AnsiConsole.MarkupLine("[red]Please enter a valid number.[/]");
                     intFlag = false;
                 }
                 else if (!(importance > 0 && importance < 5))
                 {
-                    Console.WriteLine("Please enter a valid number.");
+                    AnsiConsole.MarkupLine("[red]Please enter a valid number.[/]");
                     intFlag = false;
                 }
                 else intFlag = true;
@@ -124,16 +122,16 @@ namespace TaskMate
             intFlag = false;
             while (intFlag == false)
             {
-                AnsiConsole.WriteLine("Level of urgency (1-4)?");
+                AnsiConsole.Markup("[yellow]Level of urgency (1-4)?[/] ");
                 String imp = Console.ReadLine();
                 if (!int.TryParse(imp, out urgency))
                 {
-                    Console.WriteLine("Please enter a valid number.");
+                    AnsiConsole.MarkupLine("[red]Please enter a valid number.[/]");
                     intFlag = false;
                 }
                 else if (!(urgency > 0 && urgency < 5))
                 {
-                    Console.WriteLine("Please enter a valid number.");
+                    AnsiConsole.MarkupLine("[red]Please enter a valid number.[/]");
                     intFlag = false;
                 }
                 else intFlag = true;
@@ -178,6 +176,8 @@ namespace TaskMate
                 table.AddRow(name, minutes, importance, urgency);
             }           
             AnsiConsole.Write(table);
+            DisplayKeyPressReturnPrompt();
+        
         }
 
         public static void SelectEditTask()
@@ -215,28 +215,29 @@ namespace TaskMate
             string s = string.Empty;
             var selection = AnsiConsole.Prompt(
                 new SelectionPrompt<string>()
-                    .Title("What do you want to edit?")
+                    .Title("[yellow]What do you want to edit?[/]")
                     .PageSize(10)
                     //.MoreChoicesText("[grey](Move up and down to reveal more fruits)[/]")
-                    .AddChoices(new[] { task.Name, task.Minutes.ToString(), task.Importance.ToString(), task.Urgency.ToString(), "<- Back", })
+                    .AddChoices(new[] { $"[blue]NAME:[/] \t {task.Name}", $"[blue]MINUTES:[/] \t {task.Minutes.ToString()}", $"[blue]IMPORTANT:[/] \t {task.Importance.ToString()}", $"[blue]URGENT:[/] \t {task.Urgency.ToString()}", "[blue]<- Back[/]" })
                 );
             
-            if (selection == "<- Back") return;
-            else if (selection == task.Name)
+            if (selection.Contains("Back")) return;
+
+            else if (selection.Contains(task.Name))
             {
-                task.Name = AnsiConsole.Ask<string>("Task [green]name[/]?");
+                task.Name = AnsiConsole.Ask<string>("Task [blue]name[/]?");
                 Repo.UpdateTask(task, id);
             }
-            else if (selection == task.Minutes.ToString())
+
+            else if (selection.Contains(task.Minutes.ToString()))
             {
                 
                 bool intFlag = false;
                 while (intFlag == false)
                 {
                     
-                    //AnsiConsole.WriteLine("Minutes?");
-                    //String min = Console.ReadLine();
-                   string min = AnsiConsole.Ask<string>("Task [green]minutes[/]?");
+                    
+                   string min = AnsiConsole.Ask<string>("Task [blue]minutes[/]?");
                     if (!int.TryParse(min, out int minutes))
                     {
                         AnsiConsole.MarkupLine("[red]Please enter a valid number.[/]");
@@ -250,9 +251,10 @@ namespace TaskMate
                     }
                 }
             }
-            else if (selection == task.Importance.ToString())
+
+            else if (selection.Contains(task.Importance.ToString()))
             {
-                //s = AnsiConsole.Ask<string>("Task [green]importance[/]?");
+                //s = AnsiConsole.Ask<string>("Task [blue]importance[/]?");
                 //task.Importance = int.Parse(s);
 
                 bool intFlag = false;
@@ -263,13 +265,11 @@ namespace TaskMate
                     if (!int.TryParse(imp, out int importance))
                     {
                         AnsiConsole.MarkupLine("[red]Please enter a valid number.[/]");
-                        //Console.WriteLine("Please enter a valid number.");
                         intFlag = false;
                     }
                     else if (!(importance > 0 && importance < 5))
                     {
                         AnsiConsole.MarkupLine("[red]Please enter a valid number.[/]");
-                        //Console.WriteLine("Please enter a valid number.");
                         intFlag = false;
                     }
                     else
@@ -280,9 +280,10 @@ namespace TaskMate
                 }
                 Repo.UpdateTask(task, id);
             }
-            else if (selection == task.Urgency.ToString())
+            
+            else if (selection.Contains(task.Urgency.ToString()))
             {
-                //s = AnsiConsole.Ask<string>("Task [green]importance[/]?");
+                //s = AnsiConsole.Ask<string>("Task [blue]importance[/]?");
                 //task.Importance = int.Parse(s);
 
                 bool intFlag = false;
@@ -293,13 +294,11 @@ namespace TaskMate
                     if (!int.TryParse(imp, out int importance))
                     {
                         AnsiConsole.MarkupLine("[red]Please enter a valid number.[/]");
-                        //Console.WriteLine("Please enter a valid number.");
                         intFlag = false;
                     }
                     else if (!(importance > 0 && importance < 5))
                     {
                         AnsiConsole.MarkupLine("[red]Please enter a valid number.[/]");
-                        //Console.WriteLine("Please enter a valid number.");
                         intFlag = false;
                     }
                     else
@@ -308,8 +307,9 @@ namespace TaskMate
                         intFlag = true;
                     }
                 }
-                Repo.UpdateTask(task, id);
+                Repo.UpdateTask(task, id);               
             }
+            SelectEditProperty(id);
         }
 
         public static void SelectDeleteTask()
@@ -324,11 +324,16 @@ namespace TaskMate
             string[] nameArray = nameList.ToArray();
             var selectionList = AnsiConsole.Prompt(
             new MultiSelectionPrompt<string>()
-                    .Title("Select a task to edit:")
+                    .Title("[yellow]Select all Tasks to [red]DELETE[/], then press ENTER.[/]")
                     .PageSize(10)
                     .AddChoices(nameArray)
                     .AddChoices(new[] { "", "<- BACK" }));
             //.MoreChoicesText("[grey](Move up and down to reveal more tasks)[/]")
+
+            if (!AnsiConsole.Confirm($"[yellow]Are you sure you want to [red]permanently delete[/] {selectionList.Count} tasks?[/]"))
+            {                
+                return;
+            }
 
             for (int i = selectionList.Count - 1; i >= 0; i--)
             {
@@ -363,8 +368,9 @@ namespace TaskMate
             AnsiConsole.Write(table);
         }
         
-        public static void DisplayTaskQuadrant(List<Task> schedule)
+        public static void DisplayTaskQuadrant()
         {
+            List<Task> schedule = TaskListUtils.CreateBlockedSchedule();
             string[,] array = new string[4, 4]
             {
                 {"","","","" },
@@ -372,8 +378,6 @@ namespace TaskMate
                 {"","","","" },
                 {"","","","" },
             };
-            
-
 
             var table = new Table();
             table.Border = TableBorder.Simple;
@@ -386,23 +390,17 @@ namespace TaskMate
             {
                 table.Columns[i].Width(15);
             }
-            
-
 
             foreach (Task t in schedule)
             {
-                array[t.Importance-1, t.Urgency-1] += (t.Name + Environment.NewLine);
+                array[t.Importance - 1, t.Urgency - 1] += (t.Name + Environment.NewLine);
             }
 
             for (int c = 0; c < 4; c++)
             {
-                
-                    table.AddRow(array[c,0], array[c, 1], array[c, 2], array[c, 3]);
-               
+                table.AddRow(array[c, 0], array[c, 1], array[c, 2], array[c, 3]);
             }
 
-           
-            
             AnsiConsole.Clear();
             AnsiConsole.Write(table);
 
@@ -423,16 +421,15 @@ namespace TaskMate
             .AddRow("Test", "test");
 
 
-            
+
             //AnsiConsole.Write(
             //    new Panel(grid1)
             //        .Header("Information"));
 
-            AnsiConsole.Ask<string>("[yellow]Press Enter to Return to Menu[/]");
-           
-           
-        }
+            DisplayKeyPressReturnPrompt();
 
+        }
+        
         public static void DisplayDayPlan()
         {
             List<Task> schedule = TaskListUtils.CreateBlockedSchedule();
@@ -442,6 +439,14 @@ namespace TaskMate
                 Console.Write($"{dayPlanItem.Time.ToString("t")} \t {dayPlanItem.Name}");
                 Console.WriteLine(" ");
             }
+            DisplayKeyPressReturnPrompt();
+        }
+
+        private static void DisplayKeyPressReturnPrompt()
+        {
+            Console.WriteLine("");
+            AnsiConsole.Markup("[yellow]Press a Key to Return to Main Menu[/]");
+            Console.ReadKey();
         }
     }
 }
