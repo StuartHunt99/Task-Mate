@@ -12,9 +12,6 @@ namespace TaskMate
     {
         public static void WelcomeScreen()
         {
-
-
-
             AnsiConsole.Clear();
 
             AnsiConsole.Write(
@@ -22,7 +19,7 @@ namespace TaskMate
             .LeftAligned()
             .Color(Color.Red));
 
-            var content = new Markup(File.ReadAllText("WriteText.txt")).Centered();
+            var content = new Markup(Repo.WelcomeText()).Centered();
 
             AnsiConsole.Write(
                 new Panel(
@@ -33,8 +30,8 @@ namespace TaskMate
                         .HeaderAlignment(Justify.Center)
                         ));
 
-
             Console.ReadKey();
+
             MainMenu();
         }
 

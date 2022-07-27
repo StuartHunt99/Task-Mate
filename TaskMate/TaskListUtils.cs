@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -8,23 +9,11 @@ namespace TaskMate
 {
     public class TaskListUtils
     {
-        
-        //public static void EditTask2(string selection)
-        //{
-        //    var taskList = Repo.Load();
-        //    int found = selection.IndexOf(".");
-        //    int length = selection.Length;
-        //    int id = int.Parse(selection.Remove(found, length - found));
-        //    Console.WriteLine(taskList[id].Name);
-
-
-        //    Console.ReadLine();
-        //}
-
-
+                
         public static int ConvertToBlocks(int minutes)
         {
-            int blocks = ((minutes / 25 + 1) * 25);
+            var blockMinutes = int.Parse(ConfigurationManager.AppSettings["BlockMinutes"]);
+            int blocks = ((minutes / blockMinutes + 1) * blockMinutes);
             return blocks;
         }
 

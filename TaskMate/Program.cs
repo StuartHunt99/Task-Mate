@@ -3,14 +3,22 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
 using Spectre.Console;
+using System.Configuration;
 
 namespace TaskMate
 {
     class Program
-    { 
+    {
+
+
         static void Main(string[] args)
         {
-                              
+
+            if (!File.Exists("TaskLists.json"))
+            {
+                Repo.InitializeTaskList();
+            }
+
             SpectreUI.WelcomeScreen();
                       
         }
