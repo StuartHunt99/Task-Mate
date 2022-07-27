@@ -14,6 +14,11 @@
   <ItemGroup>
     <None Include="bin\Debug\net5.0\TaskLists.json">
       <Link>TaskLists.json</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="bin\Debug\net5.0\WriteText.txt">
+      <Link>WriteText.txt</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 </Project>

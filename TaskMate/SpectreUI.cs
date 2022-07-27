@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using Spectre.Console;
@@ -8,10 +9,44 @@ using static System.Collections.Specialized.BitVector32;
 namespace TaskMate
 {
     public class SpectreUI
-    {        
+    {
+        public static void WelcomeScreen()
+        {
+
+
+
+            AnsiConsole.Clear();
+
+            AnsiConsole.Write(
+            new FigletText("TaskMate")
+            .LeftAligned()
+            .Color(Color.Red));
+
+            var content = new Markup(File.ReadAllText("WriteText.txt")).Centered();
+
+            AnsiConsole.Write(
+                new Panel(
+                    new Panel(content)
+                        .Border(BoxBorder.Rounded)
+                        .Collapse()
+                        .Header("[yellow]Welcome to TaskMate![/]")
+                        .HeaderAlignment(Justify.Center)
+                        ));
+
+
+            Console.ReadKey();
+            MainMenu();
+        }
+
         public static void MainMenu()
         {
             AnsiConsole.Clear();
+
+            AnsiConsole.Write(
+            new FigletText("TaskMate")
+            .LeftAligned()
+            .Color(Color.Red));
+
             var highlightStyle = new Style().Foreground(Color.Lime);
             var selection = AnsiConsole.Prompt(
                 new SelectionPrompt<string>()
@@ -45,6 +80,13 @@ namespace TaskMate
 
         public static void TaskMenu()
         {
+            AnsiConsole.Clear();
+
+            AnsiConsole.Write(
+           new FigletText("TaskMate")
+           .LeftAligned()
+           .Color(Color.Red));
+
             var highlightStyle = new Style().Foreground(Color.Lime);
             var selection = AnsiConsole.Prompt(
                 new SelectionPrompt<string>()
@@ -84,7 +126,7 @@ namespace TaskMate
             int importance = 0;
             int urgency = 0;
 
-            AnsiConsole.Clear();
+            //AnsiConsole.Clear();
             AnsiConsole.Markup("[yellow]Task Name?[/] ");
             String name = Console.ReadLine();
             
@@ -289,21 +331,21 @@ namespace TaskMate
                 bool intFlag = false;
                 while (intFlag == false)
                 {
-                    AnsiConsole.WriteLine("Level of importance (1-4)?");
+                    AnsiConsole.WriteLine("Level of Urgency (1-4)?");
                     String imp = Console.ReadLine();
-                    if (!int.TryParse(imp, out int importance))
+                    if (!int.TryParse(imp, out int urgency))
                     {
                         AnsiConsole.MarkupLine("[red]Please enter a valid number.[/]");
                         intFlag = false;
                     }
-                    else if (!(importance > 0 && importance < 5))
+                    else if (!(urgency > 0 && urgency < 5))
                     {
                         AnsiConsole.MarkupLine("[red]Please enter a valid number.[/]");
                         intFlag = false;
                     }
                     else
                     {
-                        task.Importance = importance;
+                        task.Urgency = urgency;
                         intFlag = true;
                     }
                 }
@@ -401,7 +443,7 @@ namespace TaskMate
                 table.AddRow(array[c, 0], array[c, 1], array[c, 2], array[c, 3]);
             }
 
-            AnsiConsole.Clear();
+            //AnsiConsole.Clear();
             AnsiConsole.Write(table);
 
             var grid2 = new Grid()
@@ -447,6 +489,7 @@ namespace TaskMate
             Console.WriteLine("");
             AnsiConsole.Markup("[yellow]Press a Key to Return to Main Menu[/]");
             Console.ReadKey();
+            AnsiConsole.Clear();
         }
     }
 }

@@ -47,7 +47,7 @@ namespace TaskMate.UnitTests
                 oldUrgency = task.Urgency;
             }
 
-            SpectreUI.DisplayTaskQuadrant(schedule);
+            //SpectreUI.DisplayTaskQuadrant(schedule);
             
         }
     }

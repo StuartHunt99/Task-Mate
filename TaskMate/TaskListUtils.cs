@@ -24,7 +24,7 @@ namespace TaskMate
 
         public static int ConvertToBlocks(int minutes)
         {
-            int blocks = ((minutes / 15 + 1) * 15);
+            int blocks = ((minutes / 25 + 1) * 25);
             return blocks;
         }
 

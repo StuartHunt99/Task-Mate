@@ -12,8 +12,7 @@ namespace TaskMate
 
         public static List<Task> Load()
         {
-            //string fileName = "TaskLists.json";
-            //string jsonStringRead = File.ReadAllText(fileName);
+            
             jsonStringRead = File.ReadAllText("TaskLists.json");
             List<Task> tasksReturn = JsonSerializer.Deserialize<List<Task>>(jsonStringRead)!;
             return tasksReturn;

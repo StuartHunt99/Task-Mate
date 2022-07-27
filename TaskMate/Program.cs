@@ -10,16 +10,19 @@ namespace TaskMate
     { 
         static void Main(string[] args)
         {
+                              
+            SpectreUI.WelcomeScreen();
+                      
+        }
 
+        class ReadText
+        {
+            public static void Read()
+            {
+                
 
-            //SpectreUI.TaskMenu();
-            // List<Task> schedule = Repo.Load(); 
-            //SpectreUI.DisplayTaskQuadrant(schedule);
-
-            //TaskListUtils.CreateSchedule();
-
-            SpectreUI.MainMenu();
-            
+              AnsiConsole.Markup(File.ReadAllText ("WriteText.txt"));
+            }
         }
     }
 }
