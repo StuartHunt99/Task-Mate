@@ -46,6 +46,58 @@ namespace TaskMate
                     .Header("[blue]Right\n[/]")
                     .HeaderAlignment(Justify.Right));
         }
+
+        public static void TableTest()
+        {
+
+
+            var inPanel = new Panel("This is a test.")
+                        .Border(BoxBorder.Square)
+                        .Collapse()
+                        //.Header("[yellow]Welcome to TaskMate![/]")
+                        .HeaderAlignment(Justify.Center);
+            var outPanel = new Panel(inPanel)
+                        .Border(BoxBorder.Square)
+                        .Collapse()
+                        //.Header("[yellow]Welcome to TaskMate![/]")
+                        .HeaderAlignment(Justify.Center);
+
+            var inTable = new Table()
+                .AddColumn("")
+                .AddColumn("")
+                .AddColumn("")
+                .AddColumn("")
+                .AddRow("TEST", "TEST", "TEST", "TEST")
+                .AddRow("TEST", "TEST", "TEST", "TEST")
+                .AddRow("TEST", "TEST", "TEST", "TEST")
+                .AddRow("TEST", "TEST", "TEST", "TEST");
+            inTable.HeavyBorder();
+            inTable.HideHeaders();
+
+
+            var table = new Table();
+            table.NoBorder();
+            table.HideHeaders();
+            table.BorderColor(1);
+            //table.HozrizntalBorder();
+            table.AddColumn("1")
+                .AddColumn("2"); ;
+
+            //table.AddColumn("3");
+            //table.AddColumn("4");
+
+            table.AddRow(inTable, inTable);
+            //table.AddRow(inTable, inTable);
+            //table.AddRow(inTable, inTable);
+            //table.AddRow("test", "test");
+            //table.AddRow("test", "test");
+            //table.AddRow(inPanel, outPanel);
+            //table.AddRow(inPanel, outPanel);
+
+            AnsiConsole.Write(table);
+            AnsiConsole.Write(table);
+            Console.ReadKey();
+        }
     }
 }
 

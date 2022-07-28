@@ -291,7 +291,7 @@ namespace TaskMate
                 }
             }
 
-            else if (selection.Contains(task.Importance.ToString()))
+            else if (selection.Contains("IMPORTANT"))
             {
                 //s = AnsiConsole.Ask<string>("Task [blue]importance[/]?");
                 //task.Importance = int.Parse(s);
@@ -320,7 +320,7 @@ namespace TaskMate
                 Repo.UpdateTask(task, id);
             }
             
-            else if (selection.Contains(task.Urgency.ToString()))
+            else if (selection.Contains("URGENT"))
             {
                 //s = AnsiConsole.Ask<string>("Task [blue]importance[/]?");
                 //task.Importance = int.Parse(s);
@@ -475,8 +475,16 @@ namespace TaskMate
             List<DayPlanItem> dayPlan = TaskListUtils.CreateDayPlan(schedule);
             foreach (var dayPlanItem in dayPlan)
             {
-                Console.Write($"{dayPlanItem.Time.ToString("t")} \t {dayPlanItem.Name}");
-                Console.WriteLine(" ");
+                if (dayPlanItem.Name.Contains("Lunch Time!") || dayPlanItem.Name.Contains("Break")  || dayPlanItem.Name.Contains("Stop working"))
+                {
+                    AnsiConsole.Markup($"[lime]{dayPlanItem.Time.ToString("t")} \t {dayPlanItem.Name}[/]");
+
+                }
+                else
+                {
+                    AnsiConsole.Write($"{dayPlanItem.Time.ToString("t")} \t {dayPlanItem.Name}");
+                }
+                    Console.WriteLine(" ");
             }
             DisplayKeyPressReturnPrompt();
         }
