@@ -12,6 +12,9 @@ namespace TaskMate
     {               
         static void Main(string[] args)
         {
+
+         
+
             SpectreUI.WelcomeScreen();                     
         }              
     }

@@ -18,7 +18,13 @@ namespace TaskMate
             initList.Add(new Task() { Name = "Send Email", Minutes = 18, Importance = 2, Urgency = 2 });
             initList.Add(new Task() { Name = "Call Mom", Minutes = 20, Importance = 1, Urgency = 4 });
             initList.Add(new Task() { Name = "Finish Code", Minutes = 90, Importance = 4, Urgency = 3 });
-            initList.Add(new Task() { Name = "Fix Bugs", Minutes = 65, Importance = 3, Urgency = 1 });
+            initList.Add(new Task() { Name = "Fix Bugs", Minutes = 65, Importance = 3, Urgency = 2 });
+            initList.Add(new Task() { Name = "Walk the Dog", Minutes = 15, Importance = 3, Urgency = 3 });
+            initList.Add(new Task() { Name = "Write Code", Minutes = 45, Importance = 3, Urgency = 1 });
+            initList.Add(new Task() { Name = "Learn new code", Minutes = 60, Importance = 4, Urgency = 1 });
+            initList.Add(new Task() { Name = "Write report for boss", Minutes = 55, Importance = 4, Urgency = 4 });
+            initList.Add(new Task() { Name = "Organize Comic Books", Minutes = 45, Importance = 2, Urgency = 1 });
+            initList.Add(new Task() { Name = "Count Paperclips", Minutes = 30, Importance = 1, Urgency = 1 });
          
             string jsonString = JsonSerializer.Serialize(initList);
             File.WriteAllText("TaskLists.json", jsonString);

@@ -30,6 +30,11 @@ namespace TaskMate
                         .HeaderAlignment(Justify.Center)
                         ));
 
+            if (!File.Exists("TaskLists.json"))
+            {
+                Repo.InitializeTaskList();
+            }
+
             Console.ReadKey();
 
             MainMenu();
@@ -222,8 +227,6 @@ namespace TaskMate
         public static void SelectEditTask()
         {
             List<string> nameList = new List<string>();
-            //foreach (var task in Repo.Load()) nameList.Add(task.Name);
-
             foreach (var (task, index) in Repo.Load().WithIndex())
             {
                 nameList.Add(index + ". " + task.Name);
@@ -292,10 +295,7 @@ namespace TaskMate
             }
 
             else if (selection.Contains("IMPORTANT"))
-            {
-                //s = AnsiConsole.Ask<string>("Task [blue]importance[/]?");
-                //task.Importance = int.Parse(s);
-
+            {     
                 bool intFlag = false;
                 while (intFlag == false)
                 {
@@ -321,10 +321,7 @@ namespace TaskMate
             }
             
             else if (selection.Contains("URGENT"))
-            {
-                //s = AnsiConsole.Ask<string>("Task [blue]importance[/]?");
-                //task.Importance = int.Parse(s);
-
+            {               
                 bool intFlag = false;
                 while (intFlag == false)
                 {
@@ -354,7 +351,6 @@ namespace TaskMate
         public static void SelectDeleteTask()
         {
             List<string> nameList = new List<string>();
-            //foreach (var task in Repo.Load()) nameList.Add(task.Name);
 
             foreach (var (task, index) in Repo.Load().WithIndex())
             {
@@ -440,7 +436,6 @@ namespace TaskMate
                 table.AddRow(array[c, 0], array[c, 1], array[c, 2], array[c, 3]);
             }
 
-            //AnsiConsole.Clear();
             AnsiConsole.Write(table);
 
             var grid2 = new Grid()
@@ -458,13 +453,7 @@ namespace TaskMate
             .AddRow("Test", "test")
             .AddRow("Test", "test")
             .AddRow("Test", "test");
-
-
-
-            //AnsiConsole.Write(
-            //    new Panel(grid1)
-            //        .Header("Information"));
-
+                       
             DisplayKeyPressReturnPrompt();
 
         }
