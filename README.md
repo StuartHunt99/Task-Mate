@@ -7,8 +7,7 @@ TaskMate customizes your day, so you can be sure your time is truly well-spent!
 
 ## Code Louisville Requirements
 - **Feature 1:** 
-Implement a “master loop” console application where the user can repeatedly enter commands/perform actions, including choosing to exit the program
- <br />
+Implement a “master loop” console application where the user can repeatedly enter commands/perform actions, including choosing to exit the program <br />
 This is accomplished through the closed loop menu system.
 
 - **Feature 2:**
