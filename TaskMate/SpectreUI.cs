@@ -13,7 +13,6 @@ namespace TaskMate
         public static void WelcomeScreen()
         {
             AnsiConsole.Clear();
-
             AnsiConsole.Write(
             new FigletText("TaskMate")
             .LeftAligned()
